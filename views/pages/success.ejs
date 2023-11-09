@@ -36,8 +36,53 @@
                                     setInterval(updateDateTime, 1000);
                                   </script>
 
-                        <form action="/auth" method="post">
-                        <button class="btn btn-lg btn-primary" type="submit" name="button">Sign Out</button>
+
+                        <!-- Phase 2 task code : input field to print the pattern -->
+                        <form action="success.ejs" >
+                        <button class="btn btn-lg btn-primary" type="submit" name="button">Sign Out</button> <br>
+
+                        <form action= "output.html" method="post">
+                          
+                          <!-- <label for="numLines">Number of Lines (1-100):</label>
+                          <input type="number" id="numLines" min="1" max="100" value="5">
+                          <button id="displayButton">Display</button> -->
+                          <label for="numLines"> <strong> Enter number of lines</strong> </label>
+                          <input type = "number" id="numLines" value=" " min="1" max="100">
+                          <button id="displayButton" class="btn-danger">Submit</button>
+                          <div id="pattern-container"></div>
+
+                          <script>
+                            document.getElementById("displayButton").addEventListener("click", () => {
+                                const numLines = parseInt(document.getElementById("numLines").value);
+                                const word = "FORMULAQSOLUTIONS";
+                                const wordLength = word.length;
+                                const container = document.getElementById("pattern-container");
+                    
+                                while (container.firstChild) {
+                                    container.removeChild(container.firstChild);
+                                }
+                    
+                                let currentIndex = 0;
+                    
+                                for (let i = 0; i < numLines; i++) {
+                                    let line = document.createElement("div");
+                                    line.className = "line";
+                                    line.style.marginLeft = `${Math.abs(numLines / 2 - i)}ch`;
+                    
+                                    for (let j = 0; j < 2 * i + 1; j++) {
+                                        let character = document.createElement("span");
+                                        character.textContent = word[currentIndex];
+                                        currentIndex = (currentIndex + 1) % wordLength;
+                                        line.appendChild(character);
+                                    }
+                    
+                                    container.appendChild(line);
+                                }
+                            });
+                        </script>
+
+                        </form>
+
             </div>
     </div>
   </body>
