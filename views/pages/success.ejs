@@ -36,51 +36,65 @@
                                     setInterval(updateDateTime, 1000);
                                   </script>
 
-
-                        <!-- Phase 2 task code : input field to print the pattern -->
                         <form action="/" method="post">
                         <button class="btn btn-lg btn-primary" type="submit" name="button">Sign Out</button> <br>
-                        </div>
-                        <form action= "output.html" method="post">
-                          
-                          <!-- <label for="numLines">Number of Lines (1-100):</label>
-                          <input type="number" id="numLines" min="1" max="100" value="5">
-                          <button id="displayButton">Display</button> -->
-                          <label for="numLines"> <strong> Enter number of lines</strong> </label>
-                          <input type = "number" id="numLines" value=" " min="1" max="100">
-                          <button id="displayButton" class="btn-danger">Submit</button>
-                          <div id="pattern-container"></div>
+                        </form> 
 
-                          <script>
-                            document.getElementById("displayButton").addEventListener("click", () => {
-                                const numLines = parseInt(document.getElementById("numLines").value);
-                                const word = "FORMULAQSOLUTIONS";
-                                const wordLength = word.length;
-                                const container = document.getElementById("pattern-container");
-                    
-                                while (container.firstChild) {
-                                    container.removeChild(container.firstChild);
-                                }
-                    
-                                let currentIndex = 0;
-                    
-                                for (let i = 0; i < numLines; i++) {
-                                    let line = document.createElement("div");
-                                    line.className = "line";
-                                    line.style.marginLeft = `${Math.abs(numLines / 2 - i)}ch`;
-                    
-                                    for (let j = 0; j < 2 * i + 1; j++) {
-                                        let character = document.createElement("span");
-                                        character.textContent = word[currentIndex];
-                                        currentIndex = (currentIndex + 1) % wordLength;
-                                        line.appendChild(character);
+                            <!-- Phase 2 task code : input field to print the pattern  -->
+                            <label for="rows"><strong>Enter the value: </strong></label>
+                            <input type = "number" id="rows" value=" " min="1" max="100">
+                            <button onclick="generateDiamond()" class="btn btn-danger">Submit</button>
+                            <div id="output"></div>
+
+                            <script>
+                                function generateDiamond() {
+                                    let input = document.getElementById("rows").value;
+                                    let row = parseInt(input) / 2;
+
+                                    let word = "FORMULAQSOLUTIONS";
+                                    let wordLength = word.length;
+
+                                    let currentIndex = 0;
+                                    let outputDiv = document.getElementById("output");
+                                    outputDiv.innerHTML = ""; // Clear previous output
+
+                                    for (let i = 0; i <= row; i++) {
+                                        for (let j = row; j > i; j--)
+                                            outputDiv.innerHTML += "&nbsp;&nbsp;";
+                                        let charactersToPrint = 2 * i + 1;
+
+                                        let cc = charactersToPrint + i;
+                                        for (let k = i; k < cc; k++) {
+                                            if (k === wordLength) {
+                                                k = 0;
+                                                cc = cc - wordLength;
+                                            }
+                                            outputDiv.innerHTML += word[k];
+                                        }
+                                        outputDiv.innerHTML += "<br>";
                                     }
-                    
-                                    container.appendChild(line);
-                                }
-                            });
-                        </script>
 
+                                    word = "SOLUTIONSFORMULAQ";
+                                    currentIndex = 0;
+                                    for (let i = 0; i <= row; i++) {
+                                        for (let j = 0; j < i; j++)
+                                            outputDiv.innerHTML += "&nbsp;&nbsp;";
+                                        let charactersToPrint = 2 * (row - i) + 1;
+
+                                        let cc = charactersToPrint + i + 1;
+                                        for (let k = i; k <= cc; k++) {
+                                            if (k === wordLength) {
+                                                k = 0;
+                                                cc = cc - wordLength;
+                                            }
+                                            outputDiv.innerHTML += word[k];
+                                        }
+                                        outputDiv.innerHTML += "<br>";
+                                    }
+                                }
+                            </script>
+
+            </div>
     </div>
   </body>
 </html> 
