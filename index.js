@@ -12,9 +12,12 @@ app.use(session({
   secret: 'SECRET' 
 }));
 
+
+
 app.get('/', function(req, res) {
   res.render('pages/auth');
 });
+
 
 app.listen(port, function (error) { 
   
@@ -53,6 +56,14 @@ passport.deserializeUser(function(obj, cb) {
 app.post('/', function(req, res) {
   res.render("pages/auth");
 });
+
+// Add a route for logout
+app.post('/logout', function(req, res) {
+  req.logOut(); // This will clear the login session
+  res.redirect('/');
+});
+
+
 
 
 /*  Google AUTH  */
