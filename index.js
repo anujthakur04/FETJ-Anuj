@@ -59,8 +59,8 @@ app.post('/', function(req, res) {
 
 // Add a route for logout
 app.post('/logout', function(req, res) {
-  req.logOut(); // This will clear the login session
-  res.redirect('/');
+  req.logout(); 
+  res.redirect('/logout');
 });
 
 

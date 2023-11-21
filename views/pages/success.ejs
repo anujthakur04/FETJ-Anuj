@@ -37,9 +37,11 @@
                                   </script>
 
                         
-                        <form action="/logout" method="get">
+                        <form action="/" method="get">
                             <button class="btn btn-lg btn-primary" type="submit">Sign Out</button>
                         </form>
+
+
                             <!-- Phase 2 task code : input field to print the pattern  -->
                             <br><label for="rows"><strong>Number of lines: </strong></label>
                             <input type = "number" id="rows" value=" " min="1" max="100">
@@ -47,19 +49,18 @@
                             <div id="output"></div>
 
                             <script>
+                                
                                 function generateDiamond() {
                                     let input = document.getElementById("rows").value;
 
                                     if(input % 2 == 0) {
 
-                                            let row = parseInt(input) / 2;
-                                            
+                                        let row = parseInt(input / 2);                                            
                                             let word = "FORMULAQSOLUTIONS";
                                             let wordLength = word.length;
 
-                                            let currentIndex = 0;
                                             let outputDiv = document.getElementById("output");
-                                            outputDiv.innerHTML = ""; // Clear previous output
+                                            outputDiv.innerHTML = ""; 
 
                                             for (let i = 0; i < row; i++) {
                                                 for (let j = row; j > i; j--)
@@ -96,6 +97,56 @@
                                                 outputDiv.innerHTML += "<br>";
                                             }
 
+                                    }
+
+                                    else {
+                                            let row = parseInt(input / 2);
+                                            let word = "FORMULAQSOLUTIONS";
+                                            let wordLength = word.length;
+                                            let lastRowCharacters = "";
+
+                                            let outputDiv = document.getElementById("output");
+                                            outputDiv.innerHTML = ""; 
+
+                                            for (let i = 0; i <= row; i++) {
+                                                for (let j = row; j > i; j--)
+                                                    outputDiv.innerHTML += "&nbsp;&nbsp;";
+                                                let charactersToPrint = 2 * i + 1;
+
+                                                let cc = charactersToPrint + i;
+                                                for ( let k = i; k < cc; k++) {
+                                                    if (k === wordLength ) {
+                                                        k = 0;
+                                                        cc = cc - wordLength;
+                                                    }
+                                                    if(i === row) {
+                                                        lastRowCharacters += word[k];
+                                                    }
+
+                                                    outputDiv.innerHTML += word[k];
+                                                   
+                                                }
+                                                    
+                                                outputDiv.innerHTML += "<br>";
+                                                
+                                            }
+
+                                            word = lastRowCharacters;
+                                            for (let i = 1; i <= row; i++) {
+                                                for (let j = 0; j < i; j++)
+                                                    outputDiv.innerHTML += "&nbsp;&nbsp;";
+                                                let charactersToPrint = 2 * (row - i);
+
+                                                let cc = charactersToPrint + i ;
+                                                for (let k = i; k <= cc; k++) {
+                                                    if (k === wordLength) {
+                                                        k = 0;
+                                                        cc = cc - wordLength;
+                                                    }
+                                                    outputDiv.innerHTML += word[k];
+                                                }
+                                                outputDiv.innerHTML += "<br>";
+                                            }
                                     }
                                         
                                 }
